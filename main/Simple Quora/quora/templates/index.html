@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "authentication.html" %}
+
+<p><a href="{% url 'makeQuestion'%}">Make a new question</a></p>
+
+{% if questions %}
+	{% for q in questions %}
+		<p><a href="{{ q.get_absolute_url }}">{{ q.title }}</a></p>
+	{% endfor %}
+{% else %}
+	<p>Not have available questions at this moment</p>
+{% endif %}
+
+{% endblock %}

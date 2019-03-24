@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if question %}
+		<p>{{question.title}}</p>
+	{% endif %}
+	{% if answer_list %}
+		{% for a in answer_list %}
+			<p>{{a.content}}</p>
+		{% endfor %}
+	{% endif %}
+	{% if request.user.is_authenticated %}
+		<form method="post">
+			{% csrf_token %}
+			<p>Your answer:</p>
+			{{create_answer_form.content}}
+			<p><input type="submit" value="OK"></p>
+		</form>
+	{% endif %}
+{% endblock %}
